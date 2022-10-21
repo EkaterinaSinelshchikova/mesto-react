@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Header } from "../Header";
 import { Main } from "../Main";
 import { Footer } from "../Footer";
@@ -6,37 +6,51 @@ import { PopupWithForm } from "../PopupWithForm";
 import { ImagePopup } from "../ImagePopup";
 
 export function App() {
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState();
+
+  const handleCardClick = useCallback((card) => {
+    setSelectedCard(card);
+  }, []);
+
   const handleEditAvatarClick = useCallback(() => {
-    document
-      .querySelector(".popup_type_edit-avatar")
-      .classList.add("popup__is-opened");
+    setEditAvatarPopupOpen(true);
   }, []);
 
   const handleEditProfileClick = useCallback(() => {
-    document
-      .querySelector(".popup_type_edit-button")
-      .classList.add("popup__is-opened");
+    setEditProfilePopupOpen(true);
   }, []);
 
   const handleAddPlaceClick = useCallback(() => {
-    document
-      .querySelector(".popup_type_add-button")
-      .classList.add("popup__is-opened");
+    setAddPlacePopupOpen(true);
+  }, []);
+
+  const closeAllPopups = useCallback(() => {
+    setAddPlacePopupOpen(false);
+    setEditProfilePopupOpen(false);
+    setEditAvatarPopupOpen(false);
+    setSelectedCard();
   }, []);
 
   return (
     <>
       <Header />
-
       <Main
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
+        onCardClick={handleCardClick}
       />
-
+      ƒ
       <Footer />
-
-      <PopupWithForm title="Редактировать&nbsp;профиль" name="edit-button">
+      <PopupWithForm
+        title="Редактировать&nbsp;профиль"
+        name="edit-button"
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
+      >
         <label className="popup__label">
           <input
             className="popup__input"
@@ -71,8 +85,12 @@ export function App() {
           Сохранить
         </button>
       </PopupWithForm>
-
-      <PopupWithForm title="Новое&nbsp;место" name="add-button">
+      <PopupWithForm
+        title="Новое&nbsp;место"
+        name="add-button"
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
+      >
         <label className="popup__label">
           <input
             className="popup__input"
@@ -105,14 +123,17 @@ export function App() {
           Создать
         </button>
       </PopupWithForm>
-
       <PopupWithForm title="Вы уверены?" name="delete">
         <button className="popup__save-button" type="submit">
           Да
         </button>
       </PopupWithForm>
-
-      <PopupWithForm title="Обновить аватар" name="edit-avatar">
+      <PopupWithForm
+        title="Обновить аватар"
+        name="edit-avatar"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+      >
         <label className="popup__label">
           <input
             className="popup__input"
@@ -128,30 +149,11 @@ export function App() {
           Сохранить
         </button>
       </PopupWithForm>
-
-      <ImagePopup />
-
-      <template className="template-element">
-        <div className="element">
-          <img className="element__img" src="#" />
-          <div className="element__group">
-            <h2 className="element__title"></h2>
-            <div className="element__like-container">
-              <button
-                aria-label="Нравится"
-                className="element__like-button"
-                type="button"
-              ></button>
-              <span className="elements__like-counter"></span>
-            </div>
-            <button
-              className="element__delete-button"
-              type="button"
-              aria-label="Удалить"
-            ></button>
-          </div>
-        </div>
-      </template>
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+        isOpen={!!selectedCard}
+      />
     </>
   );
 }

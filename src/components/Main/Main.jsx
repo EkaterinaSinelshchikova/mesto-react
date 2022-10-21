@@ -1,14 +1,36 @@
-import avatar from "../../img/avatar.jpg";
+import { useEffect, useState } from "react";
+import { api } from "../../utils";
+import { Card } from "../Card";
 
 export function Main(props) {
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    api.getUserInfo().then((userInfo) => {
+      setUserName(userInfo.name);
+      setUserDescription(userInfo.about);
+      setUserAvatar(userInfo.avatar);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.getInitialCards().then((initialCards) => {
+      setCards(initialCards);
+    });
+  }, []);
+
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__avatar-edit">
-          <img
+          <div
             className="profile__avatar"
-            src={avatar}
             alt="Аватар пользователя"
+            style={{ backgroundImage: `url(${userAvatar})` }}
           />
           <button
             type="button"
@@ -19,8 +41,8 @@ export function Main(props) {
 
         <div className="profile__info">
           <div className="profile__text">
-            <h1 className="profile__title">Жак-Ив Кусто</h1>
-            <p className="profile__about">Исследователь океана</p>
+            <h1 className="profile__title">{userName}</h1>
+            <p className="profile__about">{userDescription}</p>
           </div>
           <button
             aria-label="Редактировать"
@@ -37,7 +59,13 @@ export function Main(props) {
           onClick={props.onAddPlace}
         />
       </section>
-      <section className="elements"></section>
+      <section className="elements">
+        {cards.map((card) => {
+          return (
+            <Card key={card._id} card={card} onCardClick={props.onCardClick} />
+          );
+        })}
+      </section>
     </main>
   );
 }

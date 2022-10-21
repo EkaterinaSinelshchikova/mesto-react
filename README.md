@@ -1,3 +1,26 @@
+# Проект: Место
+## Описание
+Проектная работа по портированию проекта Место на React.
+
+## Технологии
+
+- HTML
+- CSS
+- Работа с Figma
+- БЭМ
+- Адаптивная вёрстка 1280px, 320px
+- JS
+- React
+
+
+* [Ссылка на макет в Figma] (https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160%3A460)
+
+* [Ссылка на GitHub](https://github.com/EkaterinaSinelshchikova/)
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
