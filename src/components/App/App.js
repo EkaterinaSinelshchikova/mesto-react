@@ -43,7 +43,7 @@ export function App() {
         onAddPlace={handleAddPlaceClick}
         onCardClick={handleCardClick}
       />
-      ƒ
+
       <Footer />
       <PopupWithForm
         title="Редактировать&nbsp;профиль"
@@ -157,3 +157,4 @@ export function App() {
     </>
   );
 }
+
