@@ -1,6 +1,6 @@
 # Проект: Место
 ## Описание
-Проектная работа по портированию проекта Место на React.
+Проектная работа по экспортированию проекта Место на React.
 
 ## Технологии
 
@@ -16,6 +16,8 @@
 * [Ссылка на макет в Figma] (https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160%3A460)
 
 * [Ссылка на GitHub](https://github.com/EkaterinaSinelshchikova/)
+
+* [Ссылка на GitHub Pages] (https://github.com/EkaterinaSinelshchikova/mesto-react.git)
 
 
 
