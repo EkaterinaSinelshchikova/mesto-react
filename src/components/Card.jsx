@@ -27,7 +27,7 @@ export function Card({ card, onCardClick }) {
           className="element__delete-button"
           type="button"
           aria-label="Удалить"
-        ></button>
+        />
       </div>
     </div>
   );

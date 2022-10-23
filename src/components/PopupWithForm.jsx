@@ -15,6 +15,13 @@ export function PopupWithForm({ isOpen, onClose, ...props }) {
         <h2 className="popup__title">{props.title}</h2>
         <form className="popup__form" name={props.name} method="post">
           {props.children}
+          <button
+            aria-label={props.buttonText}
+            className="popup__save-button"
+            type="submit"
+          >
+            {props.buttonText}
+          </button>
         </form>
       </div>
     </div>

@@ -9,7 +9,7 @@ export function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState();
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardClick = useCallback((card) => {
     setSelectedCard(card);
@@ -31,7 +31,7 @@ export function App() {
     setAddPlacePopupOpen(false);
     setEditProfilePopupOpen(false);
     setEditAvatarPopupOpen(false);
-    setSelectedCard();
+    setSelectedCard(null);
   }, []);
 
   return (
@@ -50,6 +50,7 @@ export function App() {
         name="edit-button"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        buttonText="Сохранить"
       >
         <label className="popup__label">
           <input
@@ -77,19 +78,13 @@ export function App() {
           />
           <span id="about-input-error" className="popup__error"></span>
         </label>
-        <button
-          aria-label="Сохранить"
-          className="popup__save-button"
-          type="submit"
-        >
-          Сохранить
-        </button>
       </PopupWithForm>
       <PopupWithForm
         title="Новое&nbsp;место"
         name="add-button"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
+        buttonText="Создать"
       >
         <label className="popup__label">
           <input
@@ -115,13 +110,6 @@ export function App() {
           />
           <span id="link-input-error" className="popup__error"></span>
         </label>
-        <button
-          aria-label="Сохранить"
-          className="popup__save-button"
-          type="submit"
-        >
-          Создать
-        </button>
       </PopupWithForm>
       <PopupWithForm title="Вы уверены?" name="delete">
         <button className="popup__save-button" type="submit">
@@ -133,6 +121,7 @@ export function App() {
         name="edit-avatar"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        buttonText="Сохранить"
       >
         <label className="popup__label">
           <input
@@ -145,9 +134,6 @@ export function App() {
           />
           <span className="popup__error" id="avatar-input-error"></span>
         </label>
-        <button className="popup__save-button" type="submit">
-          Сохранить
-        </button>
       </PopupWithForm>
       <ImagePopup
         card={selectedCard}
@@ -157,4 +143,3 @@ export function App() {
     </>
   );
 }
-

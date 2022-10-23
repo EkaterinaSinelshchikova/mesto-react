@@ -10,17 +10,23 @@ export function Main(props) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getUserInfo().then((userInfo) => {
-      setUserName(userInfo.name);
-      setUserDescription(userInfo.about);
-      setUserAvatar(userInfo.avatar);
-    });
+    api
+      .getUserInfo()
+      .then((userInfo) => {
+        setUserName(userInfo.name);
+        setUserDescription(userInfo.about);
+        setUserAvatar(userInfo.avatar);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    api.getInitialCards().then((initialCards) => {
-      setCards(initialCards);
-    });
+    api
+      .getInitialCards()
+      .then((initialCards) => {
+        setCards(initialCards);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -29,7 +35,6 @@ export function Main(props) {
         <div className="profile__avatar-edit">
           <div
             className="profile__avatar"
-            alt="Аватар пользователя"
             style={{ backgroundImage: `url(${userAvatar})` }}
           />
           <button
