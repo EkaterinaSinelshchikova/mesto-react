@@ -84,19 +84,23 @@ export function App() {
     (card) => {
       const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
-      api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
+      api.changeLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
-      });
+      })
+      .catch((err) => console.log(err));
     },
     [currentUser]
   );
 
   const handleCardDelete = useCallback((card) => {
-    api.deleteCard(card._id).then(() => {
+    api.deleteCard(card._id)
+    .then(() => {
       setCards((state) => state.filter((c) => c._id !== card._id));
-    });
+    })
+    .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {

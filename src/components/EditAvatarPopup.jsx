@@ -34,7 +34,7 @@ export function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       buttonText="Сохранить"
-      onUpdateAvatar={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <label className="popup__label">
         <input
