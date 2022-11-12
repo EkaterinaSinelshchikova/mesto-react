@@ -1,4 +1,4 @@
-export function PopupWithForm({ isOpen, onClose, ...props }) {
+export function PopupWithForm({ isOpen, onClose, onSubmit, ...props }) {
   return (
     <div
       className={`popup popup_type_${props.name} ${
@@ -13,7 +13,12 @@ export function PopupWithForm({ isOpen, onClose, ...props }) {
           onClick={onClose}
         />
         <h2 className="popup__title">{props.title}</h2>
-        <form className="popup__form" name={props.name} method="post">
+        <form
+          className="popup__form"
+          name={props.name}
+          method="post"
+          onSubmit={onSubmit}
+        >
           {props.children}
           <button
             aria-label={props.buttonText}

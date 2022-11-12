@@ -79,6 +79,10 @@ export class Api {
       headers: this._headers,
     }).then((res) => this._requestResult(res));
   };
+
+  changeLikeCardStatus = (cardId, isLiked) => {
+    return isLiked ? this.deleteCardLike(cardId) : this.addCardLike(cardId);
+  };
 }
 
 export const api = new Api({
