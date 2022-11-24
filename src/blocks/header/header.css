@@ -1,4 +1,6 @@
 .header {
+  display: flex;
+  justify-content: space-between;
   max-width: 880px;
   padding: 0;
   margin: 0 auto;
@@ -14,5 +16,8 @@
     width: 100%;
     margin: 0 auto;
     margin-bottom: 38px;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
   }
 }
